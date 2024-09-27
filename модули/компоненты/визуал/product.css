@@ -1,0 +1,45 @@
+.product {
+  padding: 5px;
+  border: 1px solid #444; /* Темная рамка */
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+  display: flex;
+  background-color: #222; /* Темный фон для продуктов */
+  border-radius: 8px; /* Закругленные углы */
+}
+
+.выбор {
+  border: 1px solid #444; /* Темная рамка */
+  margin-right: 50px;
+  margin-left: 25px;
+  background-color: #000000; /* Темный фон для выбора */
+}
+
+.gramm {
+  margin-left: 25px;
+  color: #000000; /* Светлый текст */
+}
+
+.btn {
+  margin-top: 15px;
+  margin-left: 25px;
+  background-color: #444; /* Темный фон для кнопок */
+  color: white; /* Светлый текст */
+  border: none; /* Убираем рамку */
+  padding: 10px; /* Добавляем отступы */
+  border-radius: 5px; /* Закругленные углы */
+  cursor: pointer; /* Указатель на кнопку */
+}
+
+.btn:hover {
+  background-color: #555; /* Светлее при наведении */
+}
+
+.menu {
+  margin-right: 25px;
+  margin-left: 25px;
+  margin-top: 10px;
+  border: solid 1px #444; /* Темная рамка */
+  background-color: #222; /* Темный фон для меню */
+}

@@ -1,0 +1,27 @@
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.help {
+  border: 1px solid #888; /* Светло-серая рамка */
+  background-color: #f0f0f0; /* Светло-серый фон */
+  color: #333; /* Темный текст для контраста */
+  padding: 15px; /* Отступы внутри блока */
+  border-radius: 8px; /* Закругленные углы */
+  margin: 20px auto; /* Центрирование блока с отступом сверху и снизу */
+  max-width: 600px; /* Максимальная ширина окна */
+  display: none; /* Скрыть по умолчанию */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для глубины */
+  opacity: 1; /* Начальная непрозрачность */
+  transition: opacity 0.5s ease-out; /* Плавный переход для растворения */
+}
+
+/* Класс для скрытия с анимацией */
+.help.fade-out {
+  animation: fadeOut 0.5s forwards; /* Применяем анимацию растворения */
+}

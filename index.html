@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./модули/компоненты/визуал/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>menuMaker</title>
+  </head>
+  <body>
+    <header class="header"></header>
+    <main class="topContainer">
+      <section class="main">
+        <div class="product">
+          <form class="выбор">
+            <select id="productSelect">
+              <!-- тут продукты будут идти -->
+            </select>
+          </form>
+          <input
+            class="gramm"
+            type="number"
+            id="gramsInput"
+            name="граммы"
+            placeholder="грамм"
+          />
+        </div>
+
+        <div class="menu" id="productsContainer"></div>
+        <div class="buttons">
+          <button class="btn" id="addProductButton">добавить+</button>
+          <button class="btn" id="removeProductButton">убрать-</button>
+        </div>
+      </section>
+      <div id="productsContainer"></div>
+      <!-- Контейнер для добавленных продуктов -->
+    </main>
+    <div class="bottomContainer">
+      <div class="info">
+        <table class="table" border="1">
+          <thead>
+            <tr>
+              <th>Общая информация рациона</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Калорийность</td>
+              <td id="calories">0</td>
+            </tr>
+            <tr>
+              <td>Белки</td>
+              <td id="proteins">0</td>
+            </tr>
+            <tr>
+              <td>Жиры</td>
+              <td id="fats">0</td>
+            </tr>
+            <tr>
+              <td>Углеводы</td>
+              <td id="carbs">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="diogramm">
+        <canvas id="myPieChart"></canvas>
+        <!-- это тег фреймворка для диограмм -->
+      </div>
+    </div>
+    <div class="help"></div>
+    <script type="module" src="./модули/multiProduct.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="./модули/product.js"></script>
+  </body>
+</html>

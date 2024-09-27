@@ -1,0 +1,56 @@
+@import "./product.css";
+@import "./table.css";
+@import "./helps.css";
+@import "./responsive.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #121212; /* Темный фон для всего тела */
+  color: #e0e0e0; /* Светлый текст */
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background-color: #1a1a1a; /* Темный фон для заголовка */
+  color: white; /* Светлый текст */
+  padding: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Разделение логотипа и текста */
+}
+
+.topContainer {
+  display: flex;
+  height: 200px;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.main {
+  border: 1px solid #444; /* Темная рамка */
+  width: 752px;
+  overflow: auto;
+  background-color: #222; /* Темный фон для основного контента */
+}
+
+.bottomContainer {
+  display: flex;
+  height: 200px;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.info {
+  border: 1px solid #444; /* Темная рамка */
+  width: 550px;
+  background-color: #333; /* Темный фон для информации */
+}
+
+.diogramm {
+  border: 1px solid #444; /* Темная рамка */
+  width: 200px;
+  background-color: #333; /* Темный фон для диаграммы */
+}
