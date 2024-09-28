@@ -11,7 +11,7 @@
 
 .выбор {
   border: 1px solid #444; /* Темная рамка */
-  margin-right: 50px;
+  margin-right: 0px;
   margin-left: 25px;
   background-color: #000000; /* Темный фон для выбора */
 }

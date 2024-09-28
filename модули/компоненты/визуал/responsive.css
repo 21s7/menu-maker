@@ -1,0 +1,35 @@
+@media only screen and (min-width: 350px) and (max-width: 750px) {
+  .header {
+    padding: 15px;
+    font-size: 16px;
+  }
+
+  .topContainer,
+  .bottomContainer {
+    height: auto;
+  }
+
+  .main {
+    width: 90%;
+  }
+
+  .info {
+    width: 90%;
+  }
+
+  .diogramm {
+    width: 150px;
+  }
+
+  .table {
+    width: 70%;
+  }
+
+  .btn {
+    width: 90%;
+  }
+  .gramm {
+    margin-left: 10px;
+    width: 60px;
+  }
+}
