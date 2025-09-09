@@ -85,12 +85,30 @@ function updateTotalValues() {
     totalCarbs += p.carbs;
   });
 
-  caloriesField.textContent = totalCalories.toFixed(2);
-  proteinsField.textContent = totalProteins.toFixed(2);
-  fatsField.textContent = totalFats.toFixed(2);
-  carbsField.textContent = totalCarbs.toFixed(2);
+  // калории из БЖУ
+  const kcalFromProteins = totalProteins * 4;
+  const kcalFromFats = totalFats * 9;
+  const kcalFromCarbs = totalCarbs * 4;
+  const kcalSum = kcalFromProteins + kcalFromFats + kcalFromCarbs;
 
-  updateChart(totalProteins, totalFats, totalCarbs);
+  // проценты
+  const percProteins = kcalSum ? (kcalFromProteins / kcalSum) * 100 : 0;
+  const percFats = kcalSum ? (kcalFromFats / kcalSum) * 100 : 0;
+  const percCarbs = kcalSum ? (kcalFromCarbs / kcalSum) * 100 : 0;
+
+  // вывод в таблицу
+  caloriesField.textContent = totalCalories.toFixed(2);
+
+  proteinsField.textContent = `${totalProteins.toFixed(
+    2
+  )} г (${percProteins.toFixed(1)}%)`;
+  fatsField.textContent = `${totalFats.toFixed(2)} г (${percFats.toFixed(1)}%)`;
+  carbsField.textContent = `${totalCarbs.toFixed(2)} г (${percCarbs.toFixed(
+    1
+  )}%)`;
+
+  // диаграмма строится по граммам, можно заменить на проценты калорийности
+  updateChart(kcalFromProteins, kcalFromFats, kcalFromCarbs);
 }
 
 function removeLastProduct() {
