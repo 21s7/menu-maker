@@ -7,24 +7,18 @@ const proteinsField = document.getElementById("proteins");
 const fatsField = document.getElementById("fats");
 const carbsField = document.getElementById("carbs");
 
-// переменные диограммы
 let myPieChart = null;
 
 export function updateChart(proteins, fats, carbs) {
   const ctx = document.getElementById("myPieChart");
-  if (!ctx) {
-    console.error("Элемент canvas для диаграммы не найден.");
-    return;
-  }
+  if (!ctx) return console.error("Элемент canvas для диаграммы не найден.");
 
   const total = proteins + fats + carbs;
   const percProteins = total ? (proteins / total) * 100 : 0;
   const percFats = total ? (fats / total) * 100 : 0;
   const percCarbs = total ? (carbs / total) * 100 : 0;
 
-  if (myPieChart) {
-    myPieChart.destroy();
-  }
+  if (myPieChart) myPieChart.destroy();
 
   myPieChart = new Chart(ctx, {
     type: "pie",
@@ -44,9 +38,7 @@ export function updateChart(proteins, fats, carbs) {
         tooltip: {
           callbacks: {
             label: function (context) {
-              const label = context.label || "";
-              const value = context.raw || 0;
-              return `${label}: ${value.toFixed(1)}%`;
+              return `${context.label}: ${context.raw.toFixed(1)}%`;
             },
           },
         },
@@ -55,11 +47,11 @@ export function updateChart(proteins, fats, carbs) {
   });
 }
 
-export { продукты };
-
 Object.keys(продукты).forEach((product) => {
   const option = document.createElement("option");
   option.value = product;
   option.textContent = product;
   productSelect.appendChild(option);
 });
+
+export { продукты };

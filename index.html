@@ -1,31 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>menuMaker</title>
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net;"
     />
     <link rel="stylesheet" href="./модули/компоненты/визуал/style.css" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>menuMaker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <header class="header"></header>
-    <main class="topContainer">
-      <section class="main">
+    <header class="header">
+      <div class="header__inner">
+        <div class="header__brand">
+          <a
+            href="https://t.me/godZaGodomBOT"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="header__link"
+          >
+            <img
+              src="./модули/компоненты/визуал/telegram.png"
+              alt="Telegram"
+              class="header__logo"
+            />
+          </a>
+          <span class="header__title">365+</span>
+        </div>
+
+        <div class="header__center">
+          <img
+            src="./модули/компоненты/визуал/logo.png"
+            alt="Лого"
+            class="header__main-logo"
+          />
+        </div>
+
+        <div class="header__copy">© 2025</div>
+      </div>
+    </header>
+
+    <main class="top-container">
+      <h1>Калькулятор калорийности продуктов</h1>
+      <p>
+        Калькулятор калорий позволит рассчитать калорийность отдельных продуктов
+        в режиме онлайн. Просто выберите продукт и получите не только его
+        калорийность, но и содержание белков, жиров и углеводов (БЖУ).
+      </p>
+      <section class="top-container__main main">
         <div class="product">
-          <form class="выбор">
-            <select id="productSelect">
-              <!-- тут продукты будут идти -->
+          <form class="product__form">
+            <select class="product__select" id="productSelect">
+              <option value="" disabled selected>Выбрать продукт</option>
+              <!-- продукты подгружаются через JS -->
             </select>
           </form>
           <input
-            class="gramm"
+            class="product__grams"
             type="number"
             id="gramsInput"
             name="граммы"
@@ -33,18 +66,24 @@
           />
         </div>
 
-        <div class="menu" id="productsContainer"></div>
-        <div class="buttons">
-          <button class="btn" id="addProductButton">добавить+</button>
-          <button class="btn" id="removeProductButton">убрать-</button>
+        <div class="products-list" id="productsContainer">
+          <!-- добавленные продукты будут здесь -->
+        </div>
+
+        <div class="controls">
+          <button class="controls__btn" id="addProductButton">
+            Добавить +
+          </button>
+          <button class="controls__btn" id="removeProductButton">
+            Убрать -
+          </button>
         </div>
       </section>
-      <div id="productsContainer"></div>
-      <!-- Контейнер для добавленных продуктов -->
     </main>
-    <div class="bottomContainer">
-      <div class="info">
-        <table class="table" border="1">
+
+    <div class="bottom-container">
+      <div class="info info--table">
+        <table class="info__table" border="1">
           <thead>
             <tr>
               <th>Общая информация рациона</th>
@@ -70,14 +109,28 @@
           </tbody>
         </table>
       </div>
-      <div class="diogramm">
-        <canvas id="myPieChart"></canvas>
-        <!-- это тег фреймворка для диограмм -->
+
+      <div class="diagram">
+        <canvas id="myPieChart" class="diagram__canvas"></canvas>
       </div>
     </div>
-    <div class="help"></div>
-    <script type="module" src="./модули/multiProduct.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <section class="guide">
+      <h2>Как пользоваться калькулятором</h2>
+
+      <ul>
+        <li>в поле «Выбрать продукт» Выберите нужный продукт;</li>
+        <li>в поле «Грамм» введите грамм продукта</li>
+        <li>
+          при необходимости добавьте следующий продукт (кнопка «Добавить+») в
+          анализатор или же удалите ненужное. Количество продуктов в таблице
+          неограничено.
+        </li>
+      </ul>
+    </section>
+
+    <div class="help help--message"></div>
+
     <script type="module" src="./модули/product.js"></script>
+    <script type="module" src="./модули/multiProduct.js"></script>
   </body>
 </html>

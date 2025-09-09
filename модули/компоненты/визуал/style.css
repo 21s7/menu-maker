@@ -1,0 +1,308 @@
+@charset "UTF-8";
+/* ============================
+   Base
+============================ */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+  color: #1f1f1f;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ============================
+   Header
+============================ */
+.header {
+  background-color: #333;
+  height: 60px;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.header__inner {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Левая часть */
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header__link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.header__logo {
+  width: 26px;
+  height: 26px;
+  transition: transform 0.3s ease;
+}
+
+.header__link:hover .header__logo {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.header__title {
+  font-size: 1.2rem;
+}
+
+/* Центрированное главное лого */
+.header__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header__main-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* Правая часть */
+.header__copy {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* ============================
+   Top Container
+============================ */
+.top-container {
+  padding: 20px;
+}
+
+.top-container__main {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: fadeInUp 0.4s ease;
+}
+
+/* ============================
+   Product Block
+============================ */
+.product {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.product__select,
+.product__grams {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.product__select:focus,
+.product__grams:focus {
+  border-color: #333;
+  box-shadow: 0 0 5px rgba(51, 51, 51, 0.3);
+  outline: none;
+}
+
+/* ============================
+   Products List
+============================ */
+.products-list {
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  min-height: 50px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.products-list__item {
+  margin-bottom: 5px;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border-radius: 4px;
+}
+.products-list__item:hover {
+  background-color: #f0f0f0;
+  transform: translateX(3px);
+}
+
+/* ============================
+   Controls
+============================ */
+.controls {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.controls__btn {
+  padding: 8px 14px;
+  cursor: pointer;
+  border: 1px solid #333;
+  background-color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.controls__btn:hover {
+  background-color: #333;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.controls__btn:active {
+  transform: scale(0.95);
+}
+
+/* ============================
+   Bottom Container
+============================ */
+.bottom-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 20px;
+  animation: fadeInUp 0.5s ease;
+}
+
+.info {
+  flex: 1;
+}
+
+.info__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.info__table th,
+.info__table td {
+  padding: 8px 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.info__table th {
+  background-color: #333;
+  color: #fff;
+}
+
+/* ============================
+   Diagram
+============================ */
+.diagram {
+  flex: 1;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.diagram__canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ============================
+   Help Block
+============================ */
+.help {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffefc2;
+  padding: 10px 14px;
+  border: 1px solid #ffa500;
+  border-radius: 6px;
+  display: none;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.4s ease;
+}
+
+.help.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+/* ============================
+   Animations
+============================ */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ============================
+   Responsive
+============================ */
+@media (max-width: 768px) {
+  .top-container__main,
+  .bottom-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .product {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .product__grams {
+    width: 100%;
+  }
+  .controls {
+    flex-direction: column;
+  }
+}
+/* ============================
+   Guide Section
+============================ */
+.guide {
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.guide h2 {
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+.guide ul {
+  padding-left: 20px;
+  list-style-position: outside;
+}
+
+.guide li {
+  line-height: 1.5;
+}/*# sourceMappingURL=style.css.map */
