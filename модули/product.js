@@ -1,6 +1,7 @@
 import { продукты } from "./компоненты/info.js";
 
-const productSelect = document.getElementById("productSelect");
+const productSearch = document.getElementById("productSearch");
+const searchResults = document.getElementById("searchResults");
 const gramsInput = document.getElementById("gramsInput");
 const caloriesField = document.getElementById("calories");
 const proteinsField = document.getElementById("proteins");
@@ -8,6 +9,7 @@ const fatsField = document.getElementById("fats");
 const carbsField = document.getElementById("carbs");
 
 let myPieChart = null;
+let selectedProduct = "";
 
 export function updateChart(proteins, fats, carbs) {
   const ctx = document.getElementById("myPieChart");
@@ -47,11 +49,68 @@ export function updateChart(proteins, fats, carbs) {
   });
 }
 
-Object.keys(продукты).forEach((product) => {
-  const option = document.createElement("option");
-  option.value = product;
-  option.textContent = product;
-  productSelect.appendChild(option);
+// Функция для поиска продуктов
+function searchProducts(query) {
+  if (!query) {
+    searchResults.innerHTML = "";
+    searchResults.style.display = "none";
+    return;
+  }
+
+  const filteredProducts = Object.keys(продукты).filter((product) =>
+    product.toLowerCase().includes(query.toLowerCase())
+  );
+
+  displaySearchResults(filteredProducts);
+}
+
+// Функция для отображения результатов поиска
+function displaySearchResults(products) {
+  searchResults.innerHTML = "";
+
+  if (products.length === 0) {
+    searchResults.style.display = "none";
+    return;
+  }
+
+  products.forEach((product) => {
+    const resultItem = document.createElement("div");
+    resultItem.className = "search-result-item";
+    resultItem.textContent = product;
+    resultItem.addEventListener("click", () => {
+      selectProduct(product);
+    });
+    searchResults.appendChild(resultItem);
+  });
+
+  searchResults.style.display = "block";
+}
+
+// Функция для выбора продукта
+function selectProduct(product) {
+  selectedProduct = product;
+  productSearch.value = product;
+  searchResults.style.display = "none";
+  gramsInput.focus();
+}
+
+// Обработчики событий
+productSearch.addEventListener("input", (e) => {
+  searchProducts(e.target.value);
 });
 
-export { продукты };
+productSearch.addEventListener("focus", () => {
+  if (productSearch.value) {
+    searchProducts(productSearch.value);
+  }
+});
+
+// Скрываем результаты при клике вне поля поиска
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".product__search-container")) {
+    searchResults.style.display = "none";
+  }
+});
+
+// Экспортируем функции и переменные для использования в multiProduct.js
+export { продукты, selectedProduct, selectProduct };

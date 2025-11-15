@@ -56,12 +56,16 @@
       </p>
       <section class="top-container__main main">
         <div class="product">
-          <form class="product__form">
-            <select class="product__select" id="productSelect">
-              <option value="" disabled selected>Выбрать продукт</option>
-              <!-- продукты подгружаются через JS -->
-            </select>
-          </form>
+          <div class="product__search-container">
+            <input
+              class="product__search"
+              type="text"
+              id="productSearch"
+              placeholder="Начните вводить название продукта..."
+              autocomplete="off"
+            />
+            <div class="product__search-results" id="searchResults"></div>
+          </div>
           <input
             class="product__grams"
             type="number"
@@ -123,7 +127,8 @@
       <h2>Как пользоваться калькулятором</h2>
 
       <ul>
-        <li>в поле «Выбрать продукт» Выберите нужный продукт;</li>
+        <li>в поле поиска начните вводить название продукта;</li>
+        <li>выберите нужный продукт из выпадающего списка;</li>
         <li>в поле «Грамм» введите грамм продукта</li>
         <li>
           при необходимости добавьте следующий продукт (кнопка «Добавить+») в

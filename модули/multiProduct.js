@@ -1,6 +1,6 @@
-import { продукты, updateChart } from "./product.js";
+import { продукты, updateChart, selectedProduct } from "./product.js";
 
-const productSelect = document.getElementById("productSelect");
+const productSearch = document.getElementById("productSearch");
 const gramsInput = document.getElementById("gramsInput");
 const addProductButton = document.getElementById("addProductButton");
 const removeProductButton = document.getElementById("removeProductButton");
@@ -26,15 +26,15 @@ function showMessage(message) {
 }
 
 function addProduct() {
-  const selectedProduct = productSelect.value;
+  const currentProduct = selectedProduct;
   const grams = parseFloat(gramsInput.value);
 
-  if (!selectedProduct || isNaN(grams) || grams <= 0) {
+  if (!currentProduct || isNaN(grams) || grams <= 0) {
     showMessage("Пожалуйста, выберите продукт и введите количество грамм.");
     return;
   }
 
-  const productData = продукты[selectedProduct];
+  const productData = продукты[currentProduct];
 
   const calories = (productData.ккал || productData.калорийность || 0) * grams;
   const proteins = (productData.белки || 0) * grams;
@@ -42,7 +42,7 @@ function addProduct() {
   const carbs = (productData.углеводы || 0) * grams;
 
   const productInfo = {
-    name: selectedProduct,
+    name: currentProduct,
     grams,
     calories,
     proteins,
@@ -53,6 +53,11 @@ function addProduct() {
   selectedProducts.push(productInfo);
   renderProducts();
   updateTotalValues();
+
+  // Очищаем поля после добавления
+  productSearch.value = "";
+  gramsInput.value = "";
+  selectedProduct = "";
 }
 
 function renderProducts() {
@@ -123,3 +128,10 @@ function removeLastProduct() {
 
 addProductButton.addEventListener("click", addProduct);
 removeProductButton.addEventListener("click", removeLastProduct);
+
+// Добавляем обработчик для добавления продукта по Enter
+gramsInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    addProduct();
+  }
+});
