@@ -14,9 +14,11 @@ import NutritionTable from "./components/NutritionTable";
 import NutritionChart from "./components/NutritionChart";
 import Guide from "./components/Guide";
 import HelpMessage from "./components/HelpMessage";
+import LoadingScreen from "./components/LoadingScreen";
 import "./styles/styles.css";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const search = useSearch();
   const productsList = useProductsList();
   const help = useHelpMessage();
@@ -49,6 +51,10 @@ function App() {
       handleAddProduct();
     }
   };
+
+  if (isLoading) {
+    return <LoadingScreen onFinish={() => setIsLoading(false)} />;
+  }
 
   return (
     <div className="app">
