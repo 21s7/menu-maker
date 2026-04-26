@@ -13,27 +13,27 @@ const NutritionTable = ({ totals, hasPlantProteins, mealsCount }) => {
         <td>{mealsCount}</td>
       </tr>
       <tr>
-        <td>Калории</td>
+        <td>Калорийность</td>
         <td className={totals.calories > 2000 ? "high-calories" : ""}>
-          {totals.calories.toFixed(2)} ккал
+          {totals.calories.toFixed(1)} ккал
         </td>
       </tr>
       <tr>
         <td>Белки</td>
         <td>
-          {totals.proteins.toFixed(2)} г ({totals.proteinsPercent.toFixed(1)}%)
+          {totals.proteins.toFixed(1)} г ({totals.proteinsPercent.toFixed(1)}%)
         </td>
       </tr>
       <tr>
         <td>Жиры</td>
         <td>
-          {totals.fats.toFixed(2)} г ({totals.fatsPercent.toFixed(1)}%)
+          {totals.fats.toFixed(1)} г ({totals.fatsPercent.toFixed(1)}%)
         </td>
       </tr>
       <tr>
         <td>Углеводы</td>
         <td>
-          {totals.carbs.toFixed(2)} г ({totals.carbsPercent.toFixed(1)}%)
+          {totals.carbs.toFixed(1)} г ({totals.carbsPercent.toFixed(1)}%)
         </td>
       </tr>
     </>
@@ -41,8 +41,8 @@ const NutritionTable = ({ totals, hasPlantProteins, mealsCount }) => {
 
   if (!hasPlantProteins || isDismissed) {
     return (
-      <div className="info">
-        <table className="info__table">
+      <div className="info info--wide">
+        <table className="info__table info__table--wide">
           <thead>
             <tr>
               <th>Показатель</th>
@@ -55,8 +55,16 @@ const NutritionTable = ({ totals, hasPlantProteins, mealsCount }) => {
     );
   }
 
+  const handleDismissWarning = () => {
+    dismiss();
+  };
+
+  const handleDetailsClick = () => {
+    setShowDetails(!showDetails);
+  };
+
   return (
-    <div className="info">
+    <div className="info info--wide">
       <div className="info__warning">
         <div className="info__warning-header">
           <span className="warning-icon">⚠️</span>
@@ -69,13 +77,13 @@ const NutritionTable = ({ totals, hasPlantProteins, mealsCount }) => {
         <div className="info__warning-actions">
           <button
             className="info__warning-btn info__warning-btn--details"
-            onClick={() => setShowDetails(!showDetails)}
+            onClick={handleDetailsClick}
           >
             {showDetails ? "Скрыть детали" : "Подробнее"}
           </button>
           <button
             className="info__warning-btn info__warning-btn--ok"
-            onClick={dismiss}
+            onClick={handleDismissWarning}
           >
             Ок, больше не показывать
           </button>
@@ -95,7 +103,7 @@ const NutritionTable = ({ totals, hasPlantProteins, mealsCount }) => {
         )}
       </div>
 
-      <table className="info__table">
+      <table className="info__table info__table--wide">
         <thead>
           <tr>
             <th>Показатель</th>
@@ -108,9 +116,9 @@ const NutritionTable = ({ totals, hasPlantProteins, mealsCount }) => {
             <td>{mealsCount}</td>
           </tr>
           <tr>
-            <td>Калории</td>
+            <td>Калорийность</td>
             <td className={totals.calories > 2000 ? "high-calories" : ""}>
-              {totals.calories.toFixed(2)} ккал
+              {totals.calories.toFixed(1)} ккал
             </td>
           </tr>
           <tr className="protein-warning-row">
@@ -124,7 +132,7 @@ const NutritionTable = ({ totals, hasPlantProteins, mealsCount }) => {
               </span>
             </td>
             <td>
-              {totals.proteins.toFixed(2)} г
+              {totals.proteins.toFixed(1)} г
               <span className="protein-percent">
                 ({totals.proteinsPercent.toFixed(1)}%)
               </span>
@@ -136,13 +144,13 @@ const NutritionTable = ({ totals, hasPlantProteins, mealsCount }) => {
           <tr>
             <td>Жиры</td>
             <td>
-              {totals.fats.toFixed(2)} г ({totals.fatsPercent.toFixed(1)}%)
+              {totals.fats.toFixed(1)} г ({totals.fatsPercent.toFixed(1)}%)
             </td>
           </tr>
           <tr>
             <td>Углеводы</td>
             <td>
-              {totals.carbs.toFixed(2)} г ({totals.carbsPercent.toFixed(1)}%)
+              {totals.carbs.toFixed(1)} г ({totals.carbsPercent.toFixed(1)}%)
             </td>
           </tr>
         </tbody>
