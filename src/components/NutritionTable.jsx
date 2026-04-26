@@ -2,9 +2,42 @@
 import React, { useState } from "react";
 import { useDismissibleWarning } from "../hooks/useDismissibleWarning";
 
-const NutritionTable = ({ totals, hasPlantProteins }) => {
+const NutritionTable = ({ totals, hasPlantProteins, mealsCount }) => {
   const [showDetails, setShowDetails] = useState(false);
   const { isDismissed, dismiss } = useDismissibleWarning("plant_protein_table");
+
+  const baseTableContent = (
+    <>
+      <tr>
+        <td>Приемов пищи</td>
+        <td>{mealsCount}</td>
+      </tr>
+      <tr>
+        <td>Калории</td>
+        <td className={totals.calories > 2000 ? "high-calories" : ""}>
+          {totals.calories.toFixed(2)} ккал
+        </td>
+      </tr>
+      <tr>
+        <td>Белки</td>
+        <td>
+          {totals.proteins.toFixed(2)} г ({totals.proteinsPercent.toFixed(1)}%)
+        </td>
+      </tr>
+      <tr>
+        <td>Жиры</td>
+        <td>
+          {totals.fats.toFixed(2)} г ({totals.fatsPercent.toFixed(1)}%)
+        </td>
+      </tr>
+      <tr>
+        <td>Углеводы</td>
+        <td>
+          {totals.carbs.toFixed(2)} г ({totals.carbsPercent.toFixed(1)}%)
+        </td>
+      </tr>
+    </>
+  );
 
   if (!hasPlantProteins || isDismissed) {
     return (
@@ -16,31 +49,7 @@ const NutritionTable = ({ totals, hasPlantProteins }) => {
               <th>Значение</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Калории</td>
-              <td>{totals.calories.toFixed(2)} ккал</td>
-            </tr>
-            <tr>
-              <td>Белки</td>
-              <td>
-                {totals.proteins.toFixed(2)} г (
-                {totals.proteinsPercent.toFixed(1)}%)
-              </td>
-            </tr>
-            <tr>
-              <td>Жиры</td>
-              <td>
-                {totals.fats.toFixed(2)} г ({totals.fatsPercent.toFixed(1)}%)
-              </td>
-            </tr>
-            <tr>
-              <td>Углеводы</td>
-              <td>
-                {totals.carbs.toFixed(2)} г ({totals.carbsPercent.toFixed(1)}%)
-              </td>
-            </tr>
-          </tbody>
+          <tbody>{baseTableContent}</tbody>
         </table>
       </div>
     );
@@ -94,6 +103,10 @@ const NutritionTable = ({ totals, hasPlantProteins }) => {
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>Приемов пищи</td>
+            <td>{mealsCount}</td>
+          </tr>
           <tr>
             <td>Калории</td>
             <td className={totals.calories > 2000 ? "high-calories" : ""}>

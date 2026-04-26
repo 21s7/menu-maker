@@ -9,6 +9,11 @@ const ProductWarning = ({ product, onDismiss }) => {
 
   if (isDismissed) return null;
 
+  const handleDismiss = () => {
+    dismiss();
+    onDismiss?.();
+  };
+
   return (
     <div className="products-list__item-warning">
       <div className="warning-content">
@@ -25,7 +30,7 @@ const ProductWarning = ({ product, onDismiss }) => {
         </span>
         <button
           className="warning-dismiss-btn"
-          onClick={dismiss}
+          onClick={handleDismiss}
           title="Больше не показывать это предупреждение"
         >
           ×
@@ -35,7 +40,12 @@ const ProductWarning = ({ product, onDismiss }) => {
   );
 };
 
-const ProductsList = ({ products }) => {
+const ProductsList = ({
+  products,
+  mealId,
+  onRemoveProduct,
+  showMealContext,
+}) => {
   if (products.length === 0) {
     return (
       <div className="products-list">
@@ -47,10 +57,33 @@ const ProductsList = ({ products }) => {
   return (
     <div className="products-list">
       {products.map((product) => (
-        <div key={product.id} className="products-list__item">
+        <div
+          key={product.id}
+          className="products-list__item"
+          onClick={() =>
+            showMealContext && onRemoveProduct?.(mealId, product.id)
+          }
+          title={showMealContext ? "Нажмите, чтобы удалить продукт" : ""}
+        >
           <div className="products-list__item-header">
             <strong className="products-list__item-name">{product.name}</strong>
-            <span className="products-list__item-grams">{product.grams} г</span>
+            <div className="products-list__item-header-right">
+              <span className="products-list__item-grams">
+                {product.grams} г
+              </span>
+              {showMealContext && (
+                <button
+                  className="products-list__item-remove"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onRemoveProduct?.(mealId, product.id);
+                  }}
+                  title="Удалить продукт"
+                >
+                  ×
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="products-list__item-nutrition">

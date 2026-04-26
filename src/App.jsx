@@ -8,8 +8,7 @@ import Header from "./components/Header";
 import InfoBanner from "./components/InfoBanner";
 import SearchInput from "./components/SearchInput";
 import GramsInput from "./components/GramsInput";
-import Controls from "./components/Controls";
-import ProductsList from "./components/ProductsList";
+import MealBlock from "./components/MealBlock";
 import NutritionTable from "./components/NutritionTable";
 import NutritionChart from "./components/NutritionChart";
 import Guide from "./components/Guide";
@@ -24,14 +23,29 @@ function App() {
   const help = useHelpMessage();
 
   const [grams, setGrams] = useState("");
+  const [activeMealId, setActiveMealId] = useState(null);
+
+  // Устанавливаем активный прием пищи при первой загрузке
+  useState(() => {
+    if (productsList.meals.length > 0 && !activeMealId) {
+      setActiveMealId(productsList.meals[0].id);
+    }
+  }, [productsList.meals]);
 
   const totals = useMemo(
-    () => calculateTotals(productsList.products),
-    [productsList.products]
+    () => calculateTotals(productsList.allProducts),
+    [productsList.allProducts]
   );
 
   const handleAddProduct = () => {
+    const targetMealId = activeMealId || productsList.meals[0]?.id;
+    if (!targetMealId) {
+      help.showMessage("Создайте прием пищи сначала.");
+      return;
+    }
+
     const success = productsList.addProduct(
+      targetMealId,
       search.selected,
       parseFloat(grams),
       help.showMessage
@@ -42,8 +56,16 @@ function App() {
     }
   };
 
-  const handleRemoveLast = () => {
-    productsList.removeLastProduct(help.showMessage);
+  const handleRemoveProduct = (mealId, productId) => {
+    productsList.removeProduct(mealId, productId, help.showMessage);
+  };
+
+  const handleRemoveMeal = (mealId) => {
+    productsList.removeMeal(mealId, help.showMessage);
+    // Если удалили активный прием пищи, переключаемся на первый
+    if (activeMealId === mealId) {
+      setActiveMealId(productsList.meals[0]?.id);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -77,11 +99,50 @@ function App() {
               setGrams={setGrams}
               onKeyPress={handleKeyPress}
             />
+            <button
+              className="add-product-btn"
+              onClick={handleAddProduct}
+              title="Добавить продукт (Enter)"
+            >
+              + Добавить
+            </button>
           </div>
 
-          <Controls onAdd={handleAddProduct} onRemove={handleRemoveLast} />
+          <div className="meal-selector">
+            <label className="meal-selector__label">В прием пищи:</label>
+            <select
+              className="meal-selector__select"
+              value={activeMealId || ""}
+              onChange={(e) => setActiveMealId(Number(e.target.value))}
+            >
+              {productsList.meals.map((meal) => (
+                <option key={meal.id} value={meal.id}>
+                  {meal.name} ({meal.time})
+                </option>
+              ))}
+            </select>
+            <button
+              className="add-meal-btn"
+              onClick={productsList.addMeal}
+              title="Добавить новый прием пищи"
+            >
+              + Новый прием
+            </button>
+          </div>
 
-          <ProductsList products={productsList.products} />
+          <div className="meals-container">
+            {productsList.meals.map((meal, index) => (
+              <MealBlock
+                key={meal.id}
+                meal={meal}
+                onRemoveMeal={handleRemoveMeal}
+                onUpdateTime={productsList.updateMealTime}
+                onUpdateName={productsList.updateMealName}
+                onRemoveProduct={handleRemoveProduct}
+                isLast={productsList.meals.length === 1}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -89,6 +150,7 @@ function App() {
         <NutritionTable
           totals={totals}
           hasPlantProteins={productsList.hasPlantProteins}
+          mealsCount={productsList.mealsCount}
         />
         <NutritionChart
           proteinsPercent={totals.proteinsPercent}
