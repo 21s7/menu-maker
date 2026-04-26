@@ -3,15 +3,16 @@
   <head>
     <!-- Основные SEO-теги -->
     <title>
-      Калькулятор КБЖУ — расчёт калорий, белков, жиров и углеводов онлайн
+      Калькулятор КБЖУ — расчёт калорий с учётом растительных и животных белков
+      | Sarigma
     </title>
     <meta
       name="description"
-      content="Бесплатный онлайн калькулятор КБЖУ для точного расчёта калорийности продуктов. Рассчитайте калории, белки, жиры и углеводы (БЖУ) с учётом животных и растительных белков. Удобный дневник питания."
+      content="Онлайн калькулятор КБЖУ: рассчитайте калории, белки, жиры и углеводы с поправкой на биодоступность. Раздельный учёт животных и растительных белков, неполный аминокислотный профиль — почему это важно и как мы это учитываем. Быстрый расчёт калорийности продуктов."
     />
     <meta
       name="keywords"
-      content="калькулятор КБЖУ, расчёт калорий, калькулятор калорий, БЖУ, белки жиры углеводы, калькулятор калорийности продуктов, онлайн калькулятор калорий, дневник питания, подсчёт калорий, КБЖУ калькулятор"
+      content="Sarigma, Саригма, sarigma, саригма, yurizakhv, Юрий Захваткин, калькулятор КБЖУ, расчёт калорий, растительные белки, животные белки, биодоступность белка, аминокислотный профиль, неполный белок, калькулятор калорий, БЖУ, белки жиры углеводы, калькулятор калорийности продуктов, качество белка, растительный белок биодоступность, экосистема Sarigma, приложения Sarigma"
     />
     <meta name="author" content="yurizakhv" />
     <meta name="robots" content="index, follow" />
@@ -27,30 +28,30 @@
     <meta property="og:url" content="https://mp.sarigma.ru" />
     <meta
       property="og:title"
-      content="Калькулятор КБЖУ — расчёт калорий, белков, жиров и углеводов онлайн"
+      content="Калькулятор КБЖУ — раздельный учёт растительных и животных белков | Sarigma"
     />
     <meta
       property="og:description"
-      content="Точный онлайн калькулятор калорийности продуктов. Рассчитайте КБЖУ за пару кликов. Учитывает животные и растительные белки."
+      content="Умный калькулятор калорийности: считает КБЖУ с поправкой на биодоступность. Растительные белки — неполный аминокислотный профиль, животные — полноценный. Расчёт за пару кликов."
     />
     <meta property="og:image" content="public\logo.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:site_name" content="Sarigma КБЖУ" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://mp.sarigma.ru" />
     <meta
       name="twitter:title"
-      content="Калькулятор КБЖУ — расчёт калорий, белков, жиров и углеводов онлайн"
+      content="Калькулятор КБЖУ — раздельный учёт растительных и животных белков | Sarigma"
     />
     <meta
       name="twitter:description"
-      content="Точный онлайн калькулятор калорийности продуктов. Рассчитайте КБЖУ за пару кликов."
+      content="Калькулятор калорийности с учётом биодоступности белков. Растительные vs животные белки — считаем правильно."
     />
-    <meta name="twitter:image" content="https://mp.sarigma.ru/og-image.png" />
+    <meta name="twitter:image" content="public\logo.png" />
 
     <!-- Мобильная оптимизация -->
     <meta name="theme-color" content="#0a0a0a" />
@@ -62,14 +63,15 @@
     <meta name="apple-mobile-web-app-title" content="КБЖУ Калькулятор" />
     <link rel="apple-touch-icon" href="/logo.png" />
 
-    <!-- Структурированные данные (JSON-LD) -->
+    <!-- Структурированные данные (JSON-LD) — только для поисковых ботов -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Калькулятор КБЖУ",
+        "name": "Калькулятор КБЖУ — расчёт калорий с учётом растительных и животных белков",
         "url": "https://mp.sarigma.ru",
-        "description": "Онлайн калькулятор для расчёта калорийности продуктов и КБЖУ",
+        "description": "Онлайн калькулятор КБЖУ с раздельным учётом животных и растительных белков, их биодоступности и аминокислотного профиля.",
+        "image": "https://mp.sarigma.ru/logo.png",
         "applicationCategory": "HealthApplication",
         "operatingSystem": "All",
         "author": {
@@ -77,14 +79,17 @@
           "name": "yurizakhv",
           "url": "https://sarigma.ru"
         },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Sarigma",
+          "url": "https://sarigma.ru"
+        },
         "browserRequirements": "Requires JavaScript"
       }
     </script>
-
     <link rel="icon" type="image/png" href="\public\logo.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sarigmaPIT</title>
   </head>
   <body>
     <div id="root"></div>
