@@ -91,8 +91,8 @@ body {
 }
 
 /* ============================================
-      HEADER
-      ============================================ */
+   HEADER
+   ============================================ */
 .header {
   padding: 24px 0;
   border-bottom: 1px solid var(--border-color);
@@ -128,11 +128,58 @@ body {
   object-fit: contain;
   animation: logoGentleFloat 4s ease-in-out infinite;
   transition: filter 0.3s ease;
-  /* Логотип уже справа от текста благодаря gap во flex */
 }
 
 .header__logo-link:hover .header__logo-img {
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Кнопка "Приложения" */
+.header__apps-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.header__apps-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.header__apps-btn:active {
+  transform: translateY(0);
+}
+
+.header__apps-btn svg {
+  flex-shrink: 0;
+}
+
+.header__apps-btn .external-link-icon {
+  opacity: 0.5;
+}
+
+.header__apps-btn:hover .external-link-icon {
+  opacity: 0.8;
 }
 
 .header__copy {
@@ -141,6 +188,52 @@ body {
   font-weight: 400;
 }
 
+/* Адаптив */
+@media (max-width: 768px) {
+  .header {
+    padding: 18px 0;
+    margin-bottom: 28px;
+  }
+
+  .header__inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header__logo-link {
+    font-size: 1.1rem;
+    gap: 8px;
+  }
+
+  .header__logo-img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .header__right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header__apps-btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+
+  .header__copy {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__apps-btn span {
+    display: none; /* Скрываем текст на очень маленьких экранах */
+  }
+
+  .header__apps-btn {
+    padding: 8px;
+  }
+}
 /* ============================================
       INFO BANNER
       ============================================ */

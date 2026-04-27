@@ -1,5 +1,5 @@
 // src/components/ExportButton.jsx
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import html2canvas from "html2canvas";
 
 const ExportIcon = () => (
@@ -21,7 +21,6 @@ const ExportIcon = () => (
 
 const ExportButton = ({ meals, totals, mealsCount }) => {
   const [isExporting, setIsExporting] = useState(false);
-  const logoRef = useRef(null);
 
   // Группируем продукты по названиям
   const getGroupedProducts = () => {
@@ -57,7 +56,7 @@ const ExportButton = ({ meals, totals, mealsCount }) => {
         resolve(canvas.toDataURL("image/png"));
       };
       img.onerror = () => {
-        // Если логотип не загрузился, возвращаем заглушку
+        // Если логотип не загрузился, возвращаем null
         resolve(null);
       };
       img.src = "/logo.png";
@@ -85,7 +84,7 @@ const ExportButton = ({ meals, totals, mealsCount }) => {
 
     exportContainer.innerHTML = `
       <div>
-        <!-- Заголовок с логотипом -->
+        <!-- Заголовок с логотипом и ссылкой -->
         <div style="
           display: flex; 
           align-items: center; 
@@ -136,14 +135,12 @@ const ExportButton = ({ meals, totals, mealsCount }) => {
             </div>
             <div style="
               font-size: 11px; 
-              color: #666;
+              color: #5a8fd4;
               margin-top: 2px;
+              text-decoration: none;
+              letter-spacing: 0.5px;
             ">
-              ${new Date().toLocaleDateString("ru-RU", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
+              mp.sarigma.ru
             </div>
           </div>
         </div>
@@ -232,16 +229,29 @@ const ExportButton = ({ meals, totals, mealsCount }) => {
           </table>
         </div>
         
-        <!-- Итоговая строка -->
+        <!-- Футер с ссылкой -->
         <div style="
           margin-top: 20px;
           padding-top: 12px;
           border-top: 1px solid rgba(255,255,255,0.08);
-          text-align: right;
-          font-size: 10px;
-          color: #555;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         ">
-          Калькулятор КБЖУ © 2026
+          <a href="https://mp.sarigma.ru" style="
+            font-size: 10px; 
+            color: #5a8fd4;
+            text-decoration: none;
+            opacity: 0.8;
+          ">
+            mp.sarigma.ru
+          </a>
+          <span style="
+            font-size: 10px; 
+            color: #555;
+          ">
+            Калькулятор КБЖУ © 2026
+          </span>
         </div>
       </div>
     `;
