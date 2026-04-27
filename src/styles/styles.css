@@ -1575,3 +1575,64 @@ body {
 .warning-dismiss-btn {
   cursor: pointer !important; /* Но кнопка закрытия кликабельна */
 }
+
+/* ============================================
+   EXPORT SECTION
+   ============================================ */
+.export-section {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 0;
+  margin-top: 8px;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.export-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-hover);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.export-btn:active {
+  transform: translateY(0);
+}
+
+.export-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.export-btn svg {
+  flex-shrink: 0;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .export-section {
+    justify-content: center;
+  }
+
+  .export-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -14,6 +14,7 @@ import NutritionChart from "./components/NutritionChart";
 import Guide from "./components/Guide";
 import HelpMessage from "./components/HelpMessage";
 import LoadingScreen from "./components/LoadingScreen";
+import ExportButton from "./components/ExportButton";
 import "./styles/styles.css";
 
 function App() {
@@ -62,7 +63,6 @@ function App() {
 
   const handleRemoveMeal = (mealId) => {
     productsList.removeMeal(mealId, help.showMessage);
-    // Если удалили активный прием пищи, переключаемся на первый
     if (activeMealId === mealId) {
       setActiveMealId(productsList.meals[0]?.id);
     }
@@ -144,6 +144,14 @@ function App() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="export-section">
+        <ExportButton
+          meals={productsList.meals}
+          totals={totals}
+          mealsCount={productsList.mealsCount}
+        />
       </div>
 
       <div className="bottom-container">
